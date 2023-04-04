@@ -18,23 +18,16 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean returnCat(int id) {
-		// TODO
-		if (cats == null || cats.size() == 0){
+		/* Kaitlyn */
+		Cat c = getCat(id);
+		if (c == null || !c.getRented()) {
 			return false;
 		}
-		Cat c  = getCat(id); //the cat to return
-		if (c==null){ //if there is no cat with that id
-			return false;
-		}
-
-		else if(c.getRented()){
+		else {
 			c.returnCat();
 			return true;
 		}
-
-
-		return false;
-
+		
 	}
 
 	/**
@@ -48,14 +41,14 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean rentCat(int id) {
-
-		Cat kitty = getCat(id);
-		if(kitty!= null && kitty.getRented()==false)
-		{
-			kitty.rentCat();
+		/* Jordan */
+		Cat c = getCat(id);
+		if(c == null || c.getRented()) {
+			return false;
+		} else {
+			c.rentCat();
 			return true;
 		}
-		return false;
 	}
 
 	/**
@@ -69,16 +62,15 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public String listCats() {
-		StringBuilder sb = new StringBuilder();
-		int num = 1;
-		for (Cat kitty : cats){
-			sb.append("ID " + num + ". ");
-			sb.append(kitty.getName());
-			sb.append("\n");
-			num++;
+		/* Jordan */
+		String ret = "";
+		if(cats == null)
+			return ret;
+		for(Cat c: cats) {
+			if(!c.getRented())
+				ret += c.toString()+"\n";
 		}
-		System.out.println(sb);
-		return sb.toString();
+		return ret;
 	}
 
 	/**
@@ -91,12 +83,12 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean catExists(int id) {
-		// TODO
-		if (cats == null || cats.size() == 0){
+		/* Kaitlyn */
+		if (cats == null || cats.size() == 0) {
 			return false;
 		}
-		Cat c  = getCat(id);
-		if (c==null){
+		Cat c = getCat(id);
+		if (c == null) {
 			return false;
 		}
 		return true;
