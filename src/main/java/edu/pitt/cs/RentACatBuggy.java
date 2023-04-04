@@ -89,7 +89,18 @@ public class RentACatBuggy implements RentACat {
 
 	public boolean catExists(int id) {
 		// TODO
-		return getCat(id) == null;
+		Cat c = getCat(id);
+
+		if (c==null || cats.size() == 0){
+			return false; 
+		}
+		
+		if (cats.contains(c)){
+			return true;
+		}
+		
+		//return getCat(id) == null;
+		return false;
 	}
 
 	/**
